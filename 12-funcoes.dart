@@ -70,6 +70,9 @@
  * função através de seu nome. Logo como especificamos qual parâmetro estamos informando não precisamos mais defini-los em sequência. 
  * Para criarmos uma função com parâmetros nomeados precisamos adicioná-los entre chaves. 
  * 
+ * Caso desejarmos que um parâmetro nomeado seja obrigatório devemos adicionar o required antes de sua declaração. Ao fazermos isso não
+ * precisamos mais informar na declaração da função o valor padrão que ele assumirá, pois como ele é obrigatório, ele sempre será passado para ela.
+ * 
  * tipo_retorno nome_funcao(tipo_param nome_param_obrigatorio, {tipo_param param_opc1 = 0, tipo_param param_opc2 = false}){...}
  * 
  * Para acessá-los podemos fazer do seguinte modo:
@@ -106,6 +109,9 @@ void main() {
   
   //PARÂMETROS NOMEADOS
   cadastrarUsuario3("Marcos", 26,       sedentario: false); //Agora é possível informar o parâmetro sedentário sem ter que informar o peso
+  cadastrarUsuario4(peso: 85.7, "Marcos", 26); //Neste caso, o parâmetro peso se torna obrigatório. Como ele é nomeado pode ser adicionado em qualquer região. Já o bairro assume o valor nulo.
+  cadastrarUsuario4(peso: 85.7, "Marcos", 26, bairro: null);
+  cadastrarUsuario4(peso: 85.7, "Marcos", 26, bairro: "Smurfs");
 }
 
 
@@ -170,6 +176,17 @@ void cadastrarUsuario2(String nome, int idade, [double peso = 0.0, bool sedentar
 }
 
 void cadastrarUsuario3(String nome, int idade, {double peso = 0.0, bool sedentario = false}){
+  print("INFORMAÇÕES");
+  print("-" * 20);
+  print("NOME: $nome");
+  print("IDADE: $idade");
+  print("PESO: $peso");
+  print("SEDENTÁRIO: ${sedentario ? "SIM" : "NÃO"}");
+  print("\n");
+}
+
+
+void cadastrarUsuario4(String nome, int idade, {required double peso, bool sedentario = false, String? bairro}){
   print("INFORMAÇÕES");
   print("-" * 20);
   print("NOME: $nome");
